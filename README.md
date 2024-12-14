@@ -1,82 +1,221 @@
-# T360Project
+# **FS TASK**
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This project is a monorepo created using **Nx**. It contains two applications:  
+- **Frontend**: Built with React, TypeScript, MUI, TailwindCSS, and React Hook Form.  
+- **Backend**: Built with NestJS and serves GraphQL queries and mutations with static data.  
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+Both applications are integrated to work together as a unified system.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+---
 
-## Finish your remote caching setup
+## **Project Structure**
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/4tnZUnxaVB)
-
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve frontend
+```
+/fs-task
+├── apps
+│   ├── frontend   
+│   └── backend    
+├── libs           
+├── node_modules
+├── nx.json        
+├── package.json   
+├── tsconfig.json  
+└── README.md     
 ```
 
-To create a production bundle:
+---
 
-```sh
-npx nx build frontend
+## **Technologies Used**
+- **Nx** (for monorepo management)
+- **React** (for frontend)
+- **TypeScript** (for both frontend and backend)
+- **TailwindCSS** (for responsive UI)
+- **MUI** (for UI components)
+- **React Hook Form** (for form management)
+- **NestJS** (for backend API)
+- **GraphQL** (for API queries and mutations)
+
+---
+
+## **System Requirements**
+- **Node.js** (v18+ recommended)
+- **Yarn** or **npm**
+- **Nx CLI** (optional, for enhanced monorepo tooling)
+
+---
+
+## **Installation**
+
+To run this project locally, follow these steps.
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AhmedNewiry/FS-TASK.git
+   cd FS-TASK
+   ```
+
+2. **Install Nx CLI globally (if not already installed)**:
+   ```bash
+   npm install -g nx
+   ```
+
+   > **Note:** This step ensures that you have access to `nx` commands globally.
+
+3. **Install project dependencies**:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. **Run the applications**:
+   ```bash
+   nx serve backend
+   nx serve frontend
+   ```
+
+   - **Frontend** will be available at: [http://localhost:4200](http://localhost:4200)
+   - **Backend** will be available at: [http://localhost:4000/graphql](http://localhost:4000/graphql)
+
+---
+
+## **Frontend Application**
+
+### **Features**
+1. **Figma Design**: The UI follows a Figma design to achieve a pixel-perfect layout.
+2. **User Interface**:
+   - Uses **React** and **TypeScript**.
+   - Styled with **MUI** and **TailwindCSS**.
+   - Displays user information fetched from the backend.
+   - Implements **edit functionality** for user information with pre-populated fields.
+   - Sends updated user information to the backend using a GraphQL mutation.
+
+3. **Performance**:
+   - Optimized rendering using React best practices.
+   - Efficient use of component re-renders and state management.
+
+4. **Clean Design**:
+   - UI strictly follows the **Figma design**.
+   - Three tabs are implemented with design only (no backend integration except for the first card).
+
+### **Running the Frontend**
+
+Run the following command:
+```bash
+nx serve frontend
 ```
 
-To see all available targets to run for a project, run:
+The **frontend** will be available at: [http://localhost:4200](http://localhost:4200).
 
-```sh
-npx nx show project frontend
+### **Available Pages**
+- **Basic Information** (Interactive)
+- **Other Tabs** (Design only, no data)
+
+---
+
+## **Backend Application**
+
+### **Features**
+1. **GraphQL API**:
+   - Built using **NestJS** and **GraphQL**.
+   - Exposes a simple API with queries and mutations.
+
+2. **Queries and Mutations**:
+   - **Query**: Get user basic information.
+   - **Mutation**: Update user information.
+
+3. **Static Data**:
+   - The backend serves static data as no database is used for this task.
+
+### **GraphQL Endpoints**
+1. **GraphQL Playground**: [http://localhost:4000/graphql](http://localhost:4000/graphql)  
+   Use this URL to run GraphQL queries and mutations.
+
+### **Example Query**
+```graphql
+query GetUserBasicInfo {
+  user {
+    id
+    firstName
+    lastName
+    email
+    nationalId {
+      idNumber
+      expiryDate
+    }
+  }
+}
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
+### **Example Mutation**
+```graphql
+mutation UpdateUser($updateUserInput: UpdateUserInput!) {
+  updateUser(updateUserInput: $updateUserInput) {
+    id
+    firstName
+    lastName
+    email
+  }
+}
 ```
 
-To generate a new library, use:
+### **Running the Backend**
 
-```sh
-npx nx g @nx/react:lib mylib
+Run the following command:
+```bash
+nx serve backend
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+The **backend** will be available at: [http://localhost:4000/graphql](http://localhost:4000/graphql).  
+You can explore and test queries/mutations in the **GraphQL Playground**.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
+## **Troubleshooting**
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### **Problem: Application Won't Start**
+If you encounter issues while running the project, follow these steps.
 
-## Install Nx Console
+1. **Run the following command to clear Nx cache**:
+   ```bash
+   npx nx reset
+   ```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+2. **Reinstall dependencies**:
+   ```bash
+   rm -rf node_modules
+   npm install
+   ```
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+3. **Start the apps again**:
+   ```bash
+   nx serve backend
+   nx serve frontend
+   ```
 
-## Useful links
+### **Other Common Issues**
+- **Port Conflict**: Make sure **port 4000** (backend) and **port 4200** (frontend) are available.
+- **Missing Dependencies**: Run `npm install` or `yarn install` to ensure all dependencies are installed.
+- **Environment Issues**: Ensure **Node.js v18+** is installed.
 
-Learn more:
+---
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## **Project Goals**
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+1. **Performance**:
+   - Optimized React rendering.
+   - Reduced re-renders and efficient use of state.
+
+2. **Pixel-Perfect Design**:
+   - Strict adherence to the **Figma design**.
+
+3. **Clean Code**:
+   - Follows best practices for maintainability.
+
+4. **Documentation**:
+   - Clear instructions for setting up, running, and troubleshooting the project.
+
+---
+
+If you have any questions, please reach out for support. Happy coding! 🚀
+
