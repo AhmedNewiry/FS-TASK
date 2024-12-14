@@ -180,7 +180,7 @@ If you encounter issues while running the project, follow these steps.
 
 1. **Run the following command to clear Nx cache**:
    ```bash
-   npx nx reset
+   nx reset
    ```
 
 2. **Reinstall dependencies**:
