@@ -135,30 +135,70 @@ The **frontend** will be available at: [http://localhost:4200](http://localhost:
 
 ### **Example Query**
 ```graphql
-query GetUserBasicInfo {
-  user {
-    id
-    firstName
-    lastName
-    email
-    nationalId {
-      idNumber
-      expiryDate
+query User($userId: Float!) {
+    user(id: $userId) {
+      firstName
+      fatherName
+      grandfatherName
+      familyName
+      localizedName {
+        firstName
+        fatherName
+        grandfatherName
+        familyName
+      }
+      nationalId {
+        idNumber
+        expiryDate
+      }
+      nationalities {
+        country {
+          id
+          name
+        }
+      }
+      maritalStatus {
+        id
+        name
+      }
+      dependants
     }
   }
-}
 ```
 
 ### **Example Mutation**
 ```graphql
-mutation UpdateUser($updateUserInput: UpdateUserInput!) {
-  updateUser(updateUserInput: $updateUserInput) {
-    id
-    firstName
-    lastName
-    email
+mutation UpdateUser($userId: Float!, $updateUserInput: UpdateUserInput!) {
+    updateUser(userId: $userId, updateUserInput: $updateUserInput) {
+      id
+      firstName
+      fatherName
+      grandfatherName
+      familyName
+      localizedName {
+        firstName
+        fatherName
+        grandfatherName
+        familyName
+      }
+      nationalId {
+        idNumber
+        expiryDate
+      }
+      nationalities {
+        country {
+          id
+          name
+        }
+        countryId
+      }
+      maritalStatus {
+        id
+        name
+      }
+      dependants
+    }
   }
-}
 ```
 
 ### **Running the Backend**
