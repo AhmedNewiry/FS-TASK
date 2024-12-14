@@ -15,7 +15,7 @@ const Header = () => {
       const userName = data?.user
     
     return (
-      <header className="fixed z-20 right-0 left-[5%] h-16 bg-white shadow-md flex items-center justify-between px-6">
+      <header className="fixed z-20 right-0 left-[5%] h-16 bg-gray-100 flex items-center justify-between px-6 ">
       
         <div>
           <h1 className="text-xl font-bold text-blue-900">{`${userName.firstName} ${userName.familyName}`}</h1>
