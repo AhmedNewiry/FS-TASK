@@ -112,6 +112,8 @@ The **frontend** will be available at: [http://localhost:4200](http://localhost:
 - **Other Tabs** (Design only, no data)
 
 ---
+![Card](./screenshots/frontend1.png)
+![Edit](./screenshots/frontend2.png)
 
 ## **Backend Application**
 
